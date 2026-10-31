@@ -1,0 +1,30 @@
+## BF4 Fridge Monitoring Bot -- user-editable configuration.
+## Restart the bot (or wait ~30s for auto-reload) after changes.
+
+## -------------------------------------------------------
+## Alarm polling frequency (seconds).
+## -------------------------------------------------------
+poll_interval: 30
+
+## -------------------------------------------------------
+## Fallback destination for alarms that do not specify one.
+## Name must match an entry in alarm_destinations below.
+## -------------------------------------------------------
+alarm_channel: operator_dm
+
+## -------------------------------------------------------
+## Destinations the alarm / report editor GUIs are allowed to show
+## as selectable options.  Each entry is one of:
+##   - "operator_dm"      -- DM the current operator (see channels.yaml)
+##   - "dm_<nickname>"    -- DM a user from channels.yaml's dm_users map
+##   - "<key_name>"       -- a channel name defined in channels.yaml
+##
+## To add a new destination:
+##   1. Define it in channels.yaml.
+##   2. Add its name to this list.
+##   3. The GUI picks it up on the next open (no bot restart needed).
+## -------------------------------------------------------
+alarm_destinations:
+  - operator_dm
+  - fluxonium_kids_channel
+  - bf4_channel

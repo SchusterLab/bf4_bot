@@ -1,0 +1,45 @@
+# Python virtual environment
+.venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# IDE and tool files
+.idea/
+.vscode/
+.claude/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Keys and tokens (both old root-level and new config/ locations)
+keys.yaml
+config/keys.yaml
+config/channels.yaml
+api_key.txt
+slack_bot_token.txt
+slack_app_token.txt
+*.secret
+
+# Generated plots (temporary)
+*.png
+# ...but DO keep committed analysis figures (e.g. issue #26 water-temp study)
+!docs/analysis/*.png
+.obsidian/
+
+# Personal study notes -- kept locally, not shared in the repo
+study_notes/
+
+# Runtime state files
+bot_heartbeat.txt
+bot_outage_notified.flag
+bot_paused.flag
+bot_shutdown.flag
+bf4bot.log
+watchdog.log
+widget_position.json
+alarm_history.log
+report_state.json
+alarm_state.json

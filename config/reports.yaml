@@ -1,0 +1,17 @@
+reports:
+- name: Daily fridge report
+  type: fridge
+  hour: 9
+  days: daily
+  hours: 24
+  destinations:
+  - fluxonium_kids_channel
+  - operator_dm
+- name: Weekly fridge report
+  type: fridge
+  hour: 9
+  days: weekly-monday
+  hours: 168
+  destinations:
+  - bf4_channel
+  - operator_dm

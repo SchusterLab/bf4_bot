@@ -1,0 +1,15 @@
+# Hardware / infrastructure settings.
+# ONLY edit these if the fridge PC moves, the Bluefors API port changes,
+# or the log-file location on disk moves.  Under normal operation you
+# should never need to open this file.
+#
+# If this file is missing or values are commented out, the reader falls
+# back to its built-in defaults (same values as shown below).
+
+# Bluefors Control Software REST API -- where the bot talks to the fridge.
+api_host: "https://localhost"
+api_port: "49098"
+
+# Path where the fridge writes its CSV log files.  S: is the network drive
+# mapped to the fridge PC's shared logs folder.  Trailing slash required.
+log_prefix: "S:/_BlueFors4/Logs/"

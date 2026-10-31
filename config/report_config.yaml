@@ -1,0 +1,17 @@
+## Report editor configuration.
+## Restart the bot (or wait ~30s) after changes.
+
+## -------------------------------------------------------
+## Destinations the Report editor GUI is allowed to show as selectable
+## options.  Same syntax as alarm_destinations in alarm_config.yaml:
+##   - "operator_dm"      -- DM the current operator (channels.yaml)
+##   - "dm_<nickname>"    -- DM a user from channels.yaml's dm_users map
+##   - "<key_name>"       -- a channel name defined in channels.yaml
+##
+## Separate from alarm_destinations so you can allow different targets
+## for scheduled reports vs. on-threshold alarms.
+## -------------------------------------------------------
+report_destinations:
+  - fluxonium_kids_channel
+  - bf4_channel
+  - operator_dm

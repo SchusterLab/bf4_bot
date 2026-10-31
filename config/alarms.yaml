@@ -1,0 +1,24 @@
+alarms:
+- condition: '>'
+  destination: operator_dm
+  enabled: true
+  interval_min: 10
+  name: MXC_warm
+  threshold: 100.0
+  variable: T_MXC
+- condition: <
+  destination:
+  - operator_dm
+  - bf4_channel
+  enabled: true
+  interval_min: 1
+  name: Compressor_is_off
+  threshold: 1.0
+  variable: Compressor
+- condition: '>'
+  destination: operator_dm
+  enabled: true
+  interval_min: 10
+  name: CompressorWaterOut_high
+  threshold: 35.0
+  variable: T_CompressorWaterOut
