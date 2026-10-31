@@ -5,7 +5,7 @@ reports:
   days: daily
   hours: 24
   destinations:
-  - fluxonium_kids_channel
+  - bf4
   - operator_dm
 - name: Weekly fridge report
   type: fridge
@@ -13,5 +13,5 @@ reports:
   days: weekly-monday
   hours: 168
   destinations:
-  - bf4_channel
+  - bf4
   - operator_dm
