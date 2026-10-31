@@ -5,7 +5,7 @@ REM Uses schtasks /Run instead of launching pythonw directly.  This way
 REM Task Scheduler's IgnoreNew policy prevents duplicates automatically
 REM -- no fragile wmic process-checking needed.
 
-cd /d "C:\Users\slab\Code\BF4_BOT"
+cd /d "C:\Users\slab\Bluefors logs\bf4_bot"
 
 REM Remove shutdown flag (written by widget's STOP BOT) so the bot
 REM does not immediately exit on startup.

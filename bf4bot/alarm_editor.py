@@ -54,7 +54,7 @@ COLOR_BUTTON_HOVER = "#3a3a3a"
 # letting the user type a typo like "T_MCX" would silently never trigger.
 VALID_VARIABLES = [
     "T_MXC", "T_Still", "T_4K", "T_50K",
-    "T_CompressorWaterOut",
+    "T_CompressorWaterOut", "T_CompressorHelium",
     "P1", "P2", "P3", "P4", "P5", "P6",
     "Flow",
     "Compressor", "PulseTube",
@@ -69,6 +69,7 @@ VARIABLE_UNITS = {
     "T_MXC": "mK", "T_Still": "mK",       # reader converts K * 1e3
     "T_4K": "K", "T_50K": "K",
     "T_CompressorWaterOut": "C",          # bflegacy cpatempwo, already in C
+    "T_CompressorHelium": "C",            # bflegacy cpatemph, already in C
     "P1": "mbar", "P2": "mbar", "P3": "mbar",
     "P4": "mbar", "P5": "mbar", "P6": "mbar",   # reader converts bar * 1e3
     "Flow": "mmol/s",

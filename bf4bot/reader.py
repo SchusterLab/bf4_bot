@@ -132,6 +132,19 @@ class FridgeReader:
             return None, result["status"]
         return float(result["value"]), result["status"]
 
+    def get_compressor_helium_temp(self):
+        """Get real-time compressor HELIUM temperature.
+
+        Returns (value_C, status).  The bflegacy API (``cpatemph``) reports
+        degrees Celsius directly -- no scaling.  Backs the
+        T_CompressorHelium alarm (helium discharge too hot -> compressor at
+        risk).  Same INVALID/empty guard as the other scalar reads.
+        """
+        result = self.api_read("bflegacy/double/cpatemph")
+        if result["status"] == "INVALID" or result["value"] == "":
+            return None, result["status"]
+        return float(result["value"]), result["status"]
+
     # ----------------------------------------------------------------
     # Turbo pumps (Pfeiffer TC400 controller; typically two per system)
     # ----------------------------------------------------------------
@@ -200,6 +213,10 @@ class FridgeReader:
         # Compressor cooling-water OUTLET temperature (issue #26), in C.
         val, status = self.get_compressor_water_out()
         snapshot["T_CompressorWaterOut"] = {"value": val, "unit": "C", "status": status}
+
+        # Compressor HELIUM temperature (cpatemph), in C.
+        val, status = self.get_compressor_helium_temp()
+        snapshot["T_CompressorHelium"] = {"value": val, "unit": "C", "status": status}
 
         # Turbo pumps -- two by default.  "Turbo<i>" is the running bool,
         # "Turbo<i>_ovtemp" is a combined pump-or-electronics overtemp flag.

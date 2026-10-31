@@ -9,7 +9,7 @@ alarms:
 - condition: <
   destination:
   - operator_dm
-  - bf4_channel
+  - bf4
   enabled: true
   interval_min: 1
   name: Compressor_is_off
@@ -22,3 +22,30 @@ alarms:
   name: CompressorWaterOut_high
   threshold: 35.0
   variable: T_CompressorWaterOut
+- condition: '>'
+  destination:
+  - operator_dm
+  - bf4
+  enabled: true
+  interval_min: 10
+  name: Helium_temp_high
+  threshold: 85.0
+  variable: T_CompressorHelium
+- condition: '>'
+  destination:
+  - operator_dm
+  - bf4
+  enabled: true
+  interval_min: 10
+  name: T50K_high
+  threshold: 65.0
+  variable: T_50K
+- condition: '>'
+  destination:
+  - operator_dm
+  - bf4
+  enabled: true
+  interval_min: 10
+  name: PulseTube_4K_high
+  threshold: 4.5
+  variable: T_4K

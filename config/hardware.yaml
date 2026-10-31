@@ -12,4 +12,4 @@ api_port: "49098"
 
 # Path where the fridge writes its CSV log files.  S: is the network drive
 # mapped to the fridge PC's shared logs folder.  Trailing slash required.
-log_prefix: "S:/_BlueFors4/Logs/"
+log_prefix: "C:/Users/slab/Bluefors logs/"
