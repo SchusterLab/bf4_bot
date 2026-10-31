@@ -145,6 +145,18 @@ class FridgeReader:
             return None, result["status"]
         return float(result["value"]), result["status"]
 
+    def get_compressor_scalar(self, key):
+        """Read one scalar compressor stat from ``bflegacy/double/<key>``.
+
+        Returns (float_value, status), or (None, status) when the reading is
+        INVALID or empty.  Used for the extra compressor metrics shown in the
+        ``status`` command (water in, oil, pressures, current, run hours).
+        """
+        result = self.api_read(f"bflegacy/double/{key}")
+        if result["status"] == "INVALID" or result["value"] == "":
+            return None, result["status"]
+        return float(result["value"]), result["status"]
+
     # ----------------------------------------------------------------
     # Turbo pumps (Pfeiffer TC400 controller; typically two per system)
     # ----------------------------------------------------------------
@@ -217,6 +229,21 @@ class FridgeReader:
         # Compressor HELIUM temperature (cpatemph), in C.
         val, status = self.get_compressor_helium_temp()
         snapshot["T_CompressorHelium"] = {"value": val, "unit": "C", "status": status}
+
+        # Remaining compressor stats (bflegacy cpa*): temps in C, pressures
+        # in psi, current in A, run hours in h.  Shown by the status command.
+        comp_scalars = {
+            "CompressorWaterIn": ("cpatempwi", "C"),
+            "CompressorOil": ("cpatempo", "C"),
+            "CompressorLowP": ("cpalp", "psi"),
+            "CompressorHighP": ("cpahp", "psi"),
+            "CompressorDeltaP": ("cpadp", "psi"),
+            "CompressorCurrent": ("cpacurrent", "A"),
+            "CompressorHours": ("cpahours", "h"),
+        }
+        for snap_key, (api_key, unit) in comp_scalars.items():
+            val, status = self.get_compressor_scalar(api_key)
+            snapshot[snap_key] = {"value": val, "unit": unit, "status": status}
 
         # Turbo pumps -- two by default.  "Turbo<i>" is the running bool,
         # "Turbo<i>_ovtemp" is a combined pump-or-electronics overtemp flag.

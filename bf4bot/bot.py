@@ -732,16 +732,35 @@ class BF4Bot:
                     lines.append(f"  {key}: -- ({d['status']})")
 
             lines.append("")
+            lines.append("*Compressor:*")
+            d = snapshot["Compressor"]
+            lines.append(f"  State: {'Running' if d['value'] else 'OFF'}")
+            comp_rows = [
+                ("Helium temp", "T_CompressorHelium"),
+                ("Oil temp", "CompressorOil"),
+                ("Water in", "CompressorWaterIn"),
+                ("Water out", "T_CompressorWaterOut"),
+                ("Low pressure", "CompressorLowP"),
+                ("High pressure", "CompressorHighP"),
+                ("Delta pressure", "CompressorDeltaP"),
+                ("Current", "CompressorCurrent"),
+                ("Run hours", "CompressorHours"),
+            ]
+            for label, key in comp_rows:
+                d = snapshot.get(key)
+                if d is None:
+                    continue
+                if d["value"] is None:
+                    lines.append(f"  {label}: -- ({d['status']})")
+                elif d["unit"] == "h":
+                    lines.append(f"  {label}: {d['value']:,.0f} {d['unit']}")
+                else:
+                    lines.append(f"  {label}: {d['value']:.4g} {d['unit']}")
+
+            lines.append("")
             lines.append("*Other:*")
             d = snapshot["Flow"]
             lines.append(f"  Flow: {d['value']:.4g} {d['unit']}" if d["value"] else "  Flow: --")
-            d = snapshot["Compressor"]
-            lines.append(f"  Compressor: {'Running' if d['value'] else 'OFF'}")
-            d = snapshot["T_CompressorWaterOut"]
-            if d["value"] is not None:
-                lines.append(f"  Compressor water out: {d['value']:.4g} {d['unit']}")
-            else:
-                lines.append(f"  Compressor water out: -- ({d['status']})")
             d = snapshot["PulseTube"]
             lines.append(f"  Pulse Tube: {'Running' if d['value'] else 'OFF'}")
 
