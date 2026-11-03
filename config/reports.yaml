@@ -1,12 +1,14 @@
 reports:
-- name: Daily fridge report
-  type: fridge
-  hour: 9
-  days: daily
-  hours: 24
-  destinations:
-  - bf4
-  - operator_dm
+# Daily fridge report disabled 2026-11-03 at user request (weekly only).
+# Re-enable by uncommenting this block.
+# - name: Daily fridge report
+#   type: fridge
+#   hour: 9
+#   days: daily
+#   hours: 24
+#   destinations:
+#   - bf4
+#   - operator_dm
 - name: Weekly fridge report
   type: fridge
   hour: 9
